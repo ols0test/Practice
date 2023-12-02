@@ -1,0 +1,26 @@
+# Ignore all files in pycache
+__pycache__/
+
+# Ignore all files .pyc
+*.pyc
+
+# Ignore pytest cache
+.pytest_cache/
+
+# Ignore virt. env.
+venv/
+
+# Ignore logs
+*.log
+
+# Ignore coverage
+.coverage
+
+# Ignore temp
+*.tmp
+
+# Ignore directory IntelliJ IDEA
+.idea/
+
+# Ignore files .iml
+*.iml
