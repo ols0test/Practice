@@ -1,4 +1,5 @@
 """This section contains the basic functions for running tests"""
+from selenium.webdriver.remote.webelement import WebElement
 from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import ActionChains
@@ -16,7 +17,7 @@ class BasePage:
         """
         self.driver.get(self.url)
 
-    def element_is_visible(self, locator: object, timeout: object = 10) -> object:
+    def element_is_visible(self, locator: tuple, timeout: int = 10) -> object:
         """
         This method  verifies that an element is present in the DOM tree, visible, and displayed on the page.
         Args:
@@ -25,6 +26,15 @@ class BasePage:
         """
         self.go_to_element(self.element_is_present(locator))
         return wait(self.driver, timeout).until(EC.visibility_of_element_located(locator))
+
+    def element_is_invisible(self, locator: tuple, timeout: int = 10) -> WebElement:
+        """
+        This method verifies that the element becomes invisible (not displayed) on the page within a specified timeout.
+        Args:
+            locator: (tuple) element's locator that we need to check (example:'id', 'name', 'css selector', 'xpath').
+            timeout (int): max waiting time in seconds (10).
+        """
+        return wait(self.driver, timeout).until(EC.invisibility_of_element_located(locator))
 
     def element_is_clickable(self, locator, timeout=10):
         """
@@ -98,4 +108,3 @@ class BasePage:
         dropdown = self.element_is_clickable(dropdown_locator)
         select = Select(dropdown)
         select.select_by_visible_text(option_text)
-
