@@ -50,3 +50,11 @@ class TestWindows:
         assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
         assert new_tab_text == "This is a sample page", "Text on New tab page doesn't match"
 
+    def test_new_window_button(self, driver):
+        """Checks if new window opens when button clicked and text on new window is correct"""
+        browser_page = WindowsPage(driver, WINDOWS_HANDLING_URL)
+        browser_page.open()
+        new_window, new_window_text = browser_page.new_window_button()
+        assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
+        assert new_window_text == "This is a sample page", "Text on New tab page doesn't match"
+

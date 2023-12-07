@@ -16,4 +16,5 @@ class AlertsPageLocators:
 class BrowserWindowsLocators:
     """Choosing by Xpath just for practice"""
     NEW_TAB_BUTTON = (By.XPATH, "//button[@id='tabButton']")
-    NEW_TAB_TEXT = (By.XPATH, "//h1[@id='sampleHeading']")
+    NEW_TAB_WINDOW_TEXT = (By.XPATH, "//h1[@id='sampleHeading']")
+    NEW_WINDOW_BUTTON = (By.XPATH, "//button[@id='windowButton']")

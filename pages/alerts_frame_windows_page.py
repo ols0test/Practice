@@ -4,6 +4,7 @@ from pages.base_page import BasePage
 from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators
 from data.data_for_forms import DataForForms
 
+
 class AlertsPage(BasePage):
     locators = AlertsPageLocators
     data_for_forms = DataForForms
@@ -63,17 +64,15 @@ class WindowsPage(BasePage):
     locators = BrowserWindowsLocators
 
     def new_tab_button(self):
-
         self.element_is_clickable(self.locators.NEW_TAB_BUTTON).click()
         new_tab = self.driver.window_handles[1]
         self.driver.switch_to.window(new_tab)
-        text_on_new_tab = self.element_is_visible(self.locators.NEW_TAB_TEXT).text
+        text_on_new_tab = self.element_is_present(self.locators.NEW_TAB_WINDOW_TEXT).text
         return new_tab, text_on_new_tab
 
-
-
-
-
-
-
-
+    def new_window_button(self):
+        self.element_is_clickable(self.locators.NEW_WINDOW_BUTTON).click()
+        new_window = self.driver.window_handles[1]
+        self.driver.switch_to.window(new_window)
+        text_on_new_window = self.element_is_present(self.locators.NEW_TAB_WINDOW_TEXT).text
+        return new_window, text_on_new_window
