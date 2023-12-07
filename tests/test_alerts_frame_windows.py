@@ -1,6 +1,4 @@
 import pytest
-from selenium.common import NoSuchElementException
-
 from data.data_urls import ALERTS_PAGE_URL
 from pages.alerts_frame_windows_page import AlertsPage
 
