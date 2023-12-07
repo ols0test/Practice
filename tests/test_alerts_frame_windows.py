@@ -1,6 +1,6 @@
 import pytest
-from data.data_urls import ALERTS_PAGE_URL
-from pages.alerts_frame_windows_page import AlertsPage
+from data.data_urls import ALERTS_PAGE_URL, WINDOWS_HANDLING_URL
+from pages.alerts_frame_windows_page import AlertsPage, WindowsPage
 
 
 class TestAlerts:
@@ -38,3 +38,15 @@ class TestAlerts:
             assert text in response, "Entered name doesn't appear in the text field"
         else:
             assert response is True, "User didn't enter name, but text is present on the page"
+
+
+class TestWindows:
+
+    def test_new_tab_button(self, driver):
+        """Checks if new tab opens when button clicked and text on new tab is correct"""
+        browser_page = WindowsPage(driver, WINDOWS_HANDLING_URL)
+        browser_page.open()
+        new_tab, new_tab_text = browser_page.new_tab_button()
+        assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
+        assert new_tab_text == "This is a sample page", "Text on New tab page doesn't match"
+

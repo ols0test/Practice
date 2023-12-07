@@ -1,7 +1,7 @@
 import time
 
 from pages.base_page import BasePage
-from locators.alerts_frame_windows_locators import AlertsPageLocators
+from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators
 from data.data_for_forms import DataForForms
 
 class AlertsPage(BasePage):
@@ -57,6 +57,19 @@ class AlertsPage(BasePage):
             response = self.element_is_invisible(self.locators.TEXT_FOR_FOURTH_ELEMENT_WITH_PROMPT)
 
         return text, response
+
+
+class WindowsPage(BasePage):
+    locators = BrowserWindowsLocators
+
+    def new_tab_button(self):
+
+        self.element_is_clickable(self.locators.NEW_TAB_BUTTON).click()
+        new_tab = self.driver.window_handles[1]
+        self.driver.switch_to.window(new_tab)
+        text_on_new_tab = self.element_is_visible(self.locators.NEW_TAB_TEXT).text
+        return new_tab, text_on_new_tab
+
 
 
 

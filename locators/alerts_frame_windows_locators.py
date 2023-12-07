@@ -12,3 +12,8 @@ class AlertsPageLocators:
     FOURTH_ALERT_WITH_PROMPT = (By.ID, "promtButton")
     TEXT_FOR_FOURTH_ELEMENT_WITH_PROMPT = (By.ID, "promptResult")
 
+
+class BrowserWindowsLocators:
+    """Choosing by Xpath just for practice"""
+    NEW_TAB_BUTTON = (By.XPATH, "//button[@id='tabButton']")
+    NEW_TAB_TEXT = (By.XPATH, "//h1[@id='sampleHeading']")
