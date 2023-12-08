@@ -41,20 +41,13 @@ class TestAlerts:
 
 
 class TestWindows:
+    buttons_new_tab_new_window = ["New Tab", "New Window"]
 
-    def test_new_tab_button(self, driver):
-        """Checks if new tab opens when button clicked and text on new tab is correct"""
+    @pytest.mark.parametrize("choice", buttons_new_tab_new_window)
+    def test_new_tab_new_window(self, driver, choice):
+        """Checks if new tab/new window opens when button clicked and text on new tab/window is correct"""
         browser_page = WindowsPage(driver, WINDOWS_HANDLING_URL)
         browser_page.open()
-        new_tab, new_tab_text = browser_page.new_tab_button()
+        opened_tab_window, text_on_new_tab_window = browser_page.new_window_new_tab_buttons(choice)
         assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
-        assert new_tab_text == "This is a sample page", "Text on New tab page doesn't match"
-
-    def test_new_window_button(self, driver):
-        """Checks if new window opens when button clicked and text on new window is correct"""
-        browser_page = WindowsPage(driver, WINDOWS_HANDLING_URL)
-        browser_page.open()
-        new_window, new_window_text = browser_page.new_window_button()
-        assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
-        assert new_window_text == "This is a sample page", "Text on New tab page doesn't match"
-
+        assert text_on_new_tab_window == "This is a sample page", "Text on New tab page doesn't match"
