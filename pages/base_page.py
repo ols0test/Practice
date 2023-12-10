@@ -108,3 +108,10 @@ class BasePage:
         dropdown = self.element_is_clickable(dropdown_locator)
         select = Select(dropdown)
         select.select_by_visible_text(option_text)
+
+    def switch_to_active_window(self):
+        """
+        This function switches to new opened window/tab
+        """
+        new_window = self.driver.window_handles[-1]
+        self.driver.switch_to.window(new_window)

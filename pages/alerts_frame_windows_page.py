@@ -70,7 +70,6 @@ class WindowsPage(BasePage):
             new_tab_button.click()
         else:
             new_window_button.click()
-        opened_tab_window = self.driver.window_handles[-1]
-        self.driver.switch_to.window(opened_tab_window)
+        opened_tab_window = self.switch_to_active_window()
         text_on_new_tab_window = self.element_is_present(self.locators.NEW_TAB_WINDOW_TEXT).text
         return opened_tab_window, text_on_new_tab_window
