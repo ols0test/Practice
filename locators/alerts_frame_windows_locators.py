@@ -18,3 +18,12 @@ class BrowserWindowsLocators:
     NEW_TAB_BUTTON = (By.XPATH, "//button[@id='tabButton']")
     NEW_TAB_WINDOW_TEXT = (By.XPATH, "//h1[@id='sampleHeading']")
     NEW_WINDOW_BUTTON = (By.XPATH, "//button[@id='windowButton']")
+    NEW_WINDOW_TEXT = (By.XPATH, "//h1[@id='sampleHeading']")
+
+
+class FramesLocators:
+    """Choosing by Xpath just for practice"""
+    BIG_FRAME = (By.XPATH, "//iframe[@id='frame1']")
+    TEXT_ON_BIG_FRAME = (By.XPATH, "//h1[@id='sampleHeading']")
+    SMALL_FRAME = (By.XPATH, "//iframe[@id='frame2']")
+

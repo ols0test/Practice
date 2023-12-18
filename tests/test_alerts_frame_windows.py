@@ -1,6 +1,6 @@
 import pytest
-from data.data_urls import ALERTS_PAGE_URL, WINDOWS_HANDLING_URL
-from pages.alerts_frame_windows_page import AlertsPage, WindowsPage
+from data.data_urls import ALERTS_PAGE_URL, WINDOWS_HANDLING_URL, FRAME_PAGE_URL
+from pages.alerts_frame_windows_page import AlertsPage, WindowsPage, FramesPage
 
 
 class TestAlerts:
@@ -51,3 +51,16 @@ class TestWindows:
         opened_tab_window, text_on_new_tab_window = browser_page.new_window_new_tab_buttons(choice)
         assert driver.current_url == "https://demoqa.com/sample", "Wrong page opened, URL doesn't match"
         assert text_on_new_tab_window == "This is a sample page", "Text on New tab page doesn't match"
+
+
+class TestFrames:
+
+    def test_big_frame(self, driver):
+        """Checks if big frame has correct size and text is correct"""
+        frame_page = FramesPage(driver, FRAME_PAGE_URL)
+        frame_page.open()
+        height, width, text_on_big_frame = frame_page.big_frame()
+        print(height, width, text_on_big_frame)
+        assert height == "350px", "Height doesn't match"
+        assert width == "500px", "Width doesn't match"
+        assert text_on_big_frame == "This is a sample page", "Big frame text doesn't match"

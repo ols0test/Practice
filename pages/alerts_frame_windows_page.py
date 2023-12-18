@@ -1,7 +1,7 @@
 import time
 
 from pages.base_page import BasePage
-from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators
+from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators, FramesLocators
 from data.data_for_forms import DataForForms
 
 
@@ -30,7 +30,6 @@ class AlertsPage(BasePage):
     def third_alert_with_accept_or_dismiss(self, choice):
 
         self.element_is_clickable(self.locators.THIRD_ALERT_CONFIRM_BOX).click()
-        # self.click(self.locators.THIRD_ALERT_CONFIRM_BOX)
         alert = self.driver.switch_to.alert
         if choice == "accept":
             alert.accept()
@@ -73,3 +72,17 @@ class WindowsPage(BasePage):
         opened_tab_window = self.switch_to_active_window()
         text_on_new_tab_window = self.element_is_present(self.locators.NEW_TAB_WINDOW_TEXT).text
         return opened_tab_window, text_on_new_tab_window
+
+
+class FramesPage(BasePage):
+    locators = FramesLocators
+
+    def big_frame(self):
+        big_frame = self.element_is_present(self.locators.BIG_FRAME)
+        height = big_frame.get_attribute("height")
+        width = big_frame.get_attribute("width")
+        self.driver.switch_to.frame(big_frame)
+        text_on_big_frame = self.element_is_present(self.locators.TEXT_ON_BIG_FRAME).text
+        return height, width, text_on_big_frame
+
+
