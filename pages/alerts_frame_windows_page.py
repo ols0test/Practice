@@ -77,12 +77,19 @@ class WindowsPage(BasePage):
 class FramesPage(BasePage):
     locators = FramesLocators
 
-    def big_frame(self):
-        big_frame = self.element_is_present(self.locators.BIG_FRAME)
-        height = big_frame.get_attribute("height")
-        width = big_frame.get_attribute("width")
-        self.driver.switch_to.frame(big_frame)
-        text_on_big_frame = self.element_is_present(self.locators.TEXT_ON_BIG_FRAME).text
-        return height, width, text_on_big_frame
+    def frames_get_info(self, choice):
+        if choice == "big":
+            frame = self.element_is_present(self.locators.BIG_FRAME)
+            width = frame.get_attribute("width")
+            height = frame.get_attribute("height")
+            self.driver.switch_to.frame(frame)
+            text_on_frame = self.element_is_present(self.locators.TEXT_ON_FRAME).text
+        else:
+            frame = self.element_is_present(self.locators.SMALL_FRAME)
+            width = frame.get_attribute("width")
+            height = frame.get_attribute("height")
+            self.driver.switch_to.frame(frame)
+            text_on_frame = self.element_is_present(self.locators.TEXT_ON_FRAME).text
 
+        return width, height, text_on_frame
 

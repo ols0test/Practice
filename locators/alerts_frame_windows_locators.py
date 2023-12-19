@@ -24,6 +24,5 @@ class BrowserWindowsLocators:
 class FramesLocators:
     """Choosing by Xpath just for practice"""
     BIG_FRAME = (By.XPATH, "//iframe[@id='frame1']")
-    TEXT_ON_BIG_FRAME = (By.XPATH, "//h1[@id='sampleHeading']")
+    TEXT_ON_FRAME = (By.XPATH, "//h1[@id='sampleHeading']")
     SMALL_FRAME = (By.XPATH, "//iframe[@id='frame2']")
-

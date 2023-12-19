@@ -54,13 +54,20 @@ class TestWindows:
 
 
 class TestFrames:
+    available_frames = ["big", "small"]
 
-    def test_big_frame(self, driver):
+    @pytest.mark.parametrize("choice", available_frames)
+    def test_frames(self, driver, choice):
         """Checks if big frame has correct size and text is correct"""
         frame_page = FramesPage(driver, FRAME_PAGE_URL)
         frame_page.open()
-        height, width, text_on_big_frame = frame_page.big_frame()
-        print(height, width, text_on_big_frame)
-        assert height == "350px", "Height doesn't match"
-        assert width == "500px", "Width doesn't match"
-        assert text_on_big_frame == "This is a sample page", "Big frame text doesn't match"
+        width, height, text_on_frame = frame_page.frames_get_info(choice)
+        if choice == "big":
+            print(width, height)
+            assert width == "500px" and height == "350px", "Big frame size doesn't match"
+            assert text_on_frame == "This is a sample page", "Big frame text doesn't match"
+        else:
+            assert width == "100px" and height == "100px", "Small frame size doesn't match"
+            assert text_on_frame == "This is a sample page", "Small frame text doesn't match"
+
+
