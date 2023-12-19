@@ -71,3 +71,6 @@ class TestFrames:
             assert text_on_frame == "This is a sample page", "Small frame text doesn't match"
 
 
+
+
+
