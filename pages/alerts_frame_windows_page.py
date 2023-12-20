@@ -1,7 +1,8 @@
 import time
 
 from pages.base_page import BasePage
-from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators, FramesLocators
+from locators.alerts_frame_windows_locators import AlertsPageLocators, BrowserWindowsLocators, FramesLocators, \
+    NestedFramesLocators
 from data.data_for_forms import DataForForms
 
 
@@ -71,6 +72,7 @@ class WindowsPage(BasePage):
             new_window_button.click()
         opened_tab_window = self.switch_to_active_window()
         text_on_new_tab_window = self.element_is_present(self.locators.NEW_TAB_WINDOW_TEXT).text
+
         return opened_tab_window, text_on_new_tab_window
 
 
@@ -92,4 +94,19 @@ class FramesPage(BasePage):
             text_on_frame = self.element_is_present(self.locators.TEXT_ON_FRAME).text
 
         return width, height, text_on_frame
+
+
+class NestedFramePage(BasePage):
+    locators = NestedFramesLocators
+
+    def nested_frames_text(self):
+        parent_frame = self.element_is_present(self.locators.PARENT_FRAME)
+        self.driver.switch_to.frame(parent_frame)
+        text_on_parent_frame = self.element_is_present(self.locators.PARENT_FRAME_TEXT).text
+        child_frame = self.element_is_present(self.locators.CHILD_FRAME)
+        self.driver.switch_to.frame(child_frame)
+        text_on_child_frame = self.element_is_present(self.locators.CHILD_FRAME_TEXT).text
+        return text_on_parent_frame, text_on_child_frame
+
+
 

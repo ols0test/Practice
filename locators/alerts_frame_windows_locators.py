@@ -26,3 +26,13 @@ class FramesLocators:
     BIG_FRAME = (By.XPATH, "//iframe[@id='frame1']")
     TEXT_ON_FRAME = (By.XPATH, "//h1[@id='sampleHeading']")
     SMALL_FRAME = (By.XPATH, "//iframe[@id='frame2']")
+
+
+class NestedFramesLocators:
+    """Choosing by Xpath or ID"""
+    PARENT_FRAME = (By.XPATH, "//*[@id='frame1']")
+    PARENT_FRAME_TEXT = (By.CSS_SELECTOR, "body")
+    CHILD_FRAME = (By.XPATH, "//iframe[contains(@srcdoc, 'Child Iframe')]")
+    CHILD_FRAME_TEXT = (By.XPATH, "/html/body/p")
+
+

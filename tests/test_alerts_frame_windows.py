@@ -1,6 +1,6 @@
 import pytest
-from data.data_urls import ALERTS_PAGE_URL, WINDOWS_HANDLING_URL, FRAME_PAGE_URL
-from pages.alerts_frame_windows_page import AlertsPage, WindowsPage, FramesPage
+from data.data_urls import ALERTS_PAGE_URL, WINDOWS_HANDLING_URL, FRAME_PAGE_URL, NESTED_FRAME_PAGE_URL
+from pages.alerts_frame_windows_page import AlertsPage, WindowsPage, FramesPage, NestedFramePage
 
 
 class TestAlerts:
@@ -71,6 +71,13 @@ class TestFrames:
             assert text_on_frame == "This is a sample page", "Small frame text doesn't match"
 
 
-
+class TestNestedFrames:
+    def test_nested_frames(self, driver):
+        """Checks if text on nested frames is correct"""
+        nested_frame_page = NestedFramePage(driver, NESTED_FRAME_PAGE_URL)
+        nested_frame_page.open()
+        text_on_parent_frame, text_on_child_frame = nested_frame_page.nested_frames_text()
+        assert text_on_parent_frame == "Parent frame", "Parent frame text doesn't match"
+        assert text_on_child_frame == "Child Iframe", "Child frame text doesn't match"
 
 
